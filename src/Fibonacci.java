@@ -1,8 +1,8 @@
 import java.util.Scanner;  
 /** 
- * Çóì³²¨ÄÇÆõÊıÁĞ<br/> 
+ * æ±‚æ–æ³¢é‚£å¥‘æ•°åˆ—<br/> 
  * <pre> 
- * [F(n+1) F(n)]    [1  1 ]^n   (n´Î·½,¿ÉÒÔÊ¹ÓÃ¹éÄÉ·¨Ö¤Ã÷)<br/> 
+ * [F(n+1) F(n)]    [1  1 ]^n   (næ¬¡æ–¹,å¯ä»¥ä½¿ç”¨å½’çº³æ³•è¯æ˜)<br/> 
  * |           |   =|     |                     <br/> 
  * [F(n) F(n-1)]    [1  0 ]                     <br/> 
  * </pre> 
@@ -10,26 +10,26 @@ import java.util.Scanner;
  * 
  */  
 public class F {  
-    // ¹ØÁª¾ØÕó  
+    // å…³è”çŸ©é˜µ  
     private static final int[][] UNIT = { { 1, 1 }, { 1, 0 } };  
-    // È«0¾ØÕó  
+    // å…¨0çŸ©é˜µ  
     private static final int[][] ZERO = { { 0, 0 }, { 0, 0 } };  
   
     public static void main(String[] args) {  
         Scanner scanner = new Scanner(System.in);  
         while (true) {  
-            // µÚn¸öì³²¨ÄÇÆõÊı,´Ó0¿ªÊ¼  
+            // ç¬¬nä¸ªæ–æ³¢é‚£å¥‘æ•°,ä»0å¼€å§‹  
             int n = scanner.nextInt();  
             long t1 = System.currentTimeMillis();  
             int[][] m = fb(n);  
             long t2 = System.currentTimeMillis();  
-            System.out.println(m[0][1]);  //ÕâÀï×¢ÒâÇø±ğ[0][0]Óë[0][1],ÓÉÓÚ×îºóÏà³ËµÄÊÇUNIT¾ØÕó£¬ÔòÈ¡[0][1]×öÎª×îÖÕµÄf(n)
+            System.out.println(m[0][1]);  //è¿™é‡Œæ³¨æ„åŒºåˆ«[0][0]ä¸[0][1],ç”±äºæœ€åç›¸ä¹˜çš„æ˜¯UNITçŸ©é˜µï¼Œåˆ™å–[0][1]åšä¸ºæœ€ç»ˆçš„f(n)
             System.out.println("Time is: " + (t2 - t1));  
         }
     }  
       
     /** 
-     * Çóì³²¨ÄÇÆõÊıÁĞ 
+     * æ±‚æ–æ³¢é‚£å¥‘æ•°åˆ— 
      *  
      * @param n 
      * @return 
@@ -41,24 +41,24 @@ public class F {
         if (n == 1) {  
             return UNIT;  
         }  
-        // nÊÇÅ¼Êı
+        // næ˜¯å¶æ•°
         if ((n & 1) == 0) {  
             int[][] matrix = fb(n >> 1);  
             return matrixMultiply(matrix, matrix);  
         }  
-        // nÊÇÆæÊı  
+        // næ˜¯å¥‡æ•°  
         int[][] matrix = fb((n - 1) >> 1);  
         return matrixMultiply(matrixMultiply(matrix, matrix), UNIT);  
     }  
       
     /** 
-     * ¾ØÕóÏà³Ë 
+     * çŸ©é˜µç›¸ä¹˜ 
      *  
      * @param m 
      *            r1*c1 
      * @param n 
      *            c1*c2 
-     * @return ĞÂ¾ØÕó,r1*c2 
+     * @return æ–°çŸ©é˜µ,r1*c2 
      */  
     public static int[][] matrixMultiply(int[][] m, int[][] n) {  
         int rows = m.length;  
